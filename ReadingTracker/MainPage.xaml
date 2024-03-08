@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:Class="ReadingTracker.MainPage">
+
+    <ContentPage.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="White" />
+    </ContentPage.Behaviors>
+
+
+    <tabView:SfTabView x:Name="tabView" TabBarPlacement="Bottom" IndicatorPlacement="Fill" IndicatorBackground="whitesmoke" TabBarHeight="72">
+        <tabView:SfTabView.Items Color="White">
+
+            <tabView:SfTabItem Header="Discover" FontFamily="Poppins" FontAttributes="Bold" ImageSource="Resources/Images/SVG/ico_discover.png">
+                <tabView:SfTabItem.Content>
+                    <ScrollView>
+                        <StackLayout Spacing="30">
+                            <Label FontFamily="PlayFair" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center">Discover New Books</Label>
+                            <SearchBar x:Name="searchBar" Placeholder="Search by title, author, genre" BackgroundColor="WhiteSmoke" TextColor="Black" Unfocused="SearchBar_Unfocused"></SearchBar>
+                            <ActivityIndicator x:Name="loadingIndicator"
+                               IsVisible="False"
+                               IsRunning="False"
+                               Color="IndianRed"/>
+                            <ListView x:Name="recommendedListView"
+                                IsVisible="False"
+                                HeightRequest="50"
+                                ItemSelected="RecommendedListView_ItemSelected">
+                            </ListView>
+                            <Frame BorderColor="Transparent" x:Name="reccommended">
+                                <StackLayout Spacing="10">
+                                    <Label FontFamily="Poppins" FontSize="Header">Reccommended for You</Label>
+                                    <Frame BackgroundColor="WhiteSmoke" BorderColor="Transparent"></Frame>
+                                </StackLayout>
+                            </Frame>
+                            
+                            <Frame BorderColor="Transparent" x:Name="searchResults">
+                                <StackLayout Spacing="10" x:Name="searchStackLayout">
+                                    <Frame BackgroundColor="Transparent" BorderColor="Transparent">
+                                        <Label x:Name="searchErrorLabel" FontFamily="Poppins" FontSize="Header" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">No results found.</Label>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+                            
+                        </StackLayout>
+                    </ScrollView>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Header="Recent" FontFamily="Poppins" FontAttributes="Bold" ImageSource="Resources/Images/ico_recent.png">
+                <tabView:SfTabItem.Content>
+                    <ScrollView>
+                        <StackLayout>
+                            <Label FontFamily="PlayFair" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center">Recently Read</Label>
+                            <Label FontFamily="Poppins" FontSize="Header" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">When you've read some books, they'll appear here.</Label>
+                        </StackLayout>
+                    </ScrollView>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Header="Favourites" FontFamily="Poppins" FontAttributes="Bold" ImageSource="Resources/Images/ico_favourite.png">
+                <tabView:SfTabItem.Content>
+                    <ScrollView>
+                        <StackLayout>
+                            <Label FontFamily="PlayFair" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center">My Favourites</Label>
+                            <Label FontFamily="Poppins" FontSize="Header" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">Pin your favourite books here for quick access.</Label>
+                        </StackLayout>
+                    </ScrollView>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+        </tabView:SfTabView.Items>
+    </tabView:SfTabView>
+
+</ContentPage>
